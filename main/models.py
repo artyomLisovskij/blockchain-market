@@ -9,14 +9,14 @@ class EthUsers(models.Model):
         return '%s' % self.address
         
 class Categories(models.Model):
-    name = models.CharField()
+    name = models.CharField(max_length=42)
     def __str__(self):
         return '%s' % self.name
 
 class Products(models.Model):
     address = models.CharField(max_length=42)
-    name = models.CharField()
-    category = models.CharField()
+    name = models.CharField(max_length=42)
+    category = models.CharField(max_length=42)
     owner = models.ForeignKey(EthUsers, on_delete=models.CASCADE)
     price = models.IntegerField()
     last_price_date = models.DateField()

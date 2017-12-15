@@ -19,5 +19,5 @@ def createProduct(request):
         print(category)
         print(price)
         print(owner)
-    return HttpResponse('ok')
+    return render(request, 'index.html') 
     

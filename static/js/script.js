@@ -1,2 +1,8 @@
+console.log("goo1");
 
-console.log("goo");
+$('.button').click(function() {
+    console.log("goo");
+    
+    
+    
+});
