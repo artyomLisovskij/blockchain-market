@@ -10,22 +10,15 @@
   
 </head>
 <body>
- <form action="/../register/" method="POST" class="post-form">
+ <form action="/../createProduct/" method="POST" class="post-form">
         {% csrf_token %}
-        <input type="text" name="name"           maxlength="30" placeholder="Введите логин"    required/><br>
-        <input type="text" name="category"        maxlength="30" placeholder="Введите пароль"   required/><br>
-        <input type="text" name="price"       maxlength="30" placeholder="Повторите пароль" required/><br>
-        <input type="text" name="owner"           maxlength="30" placeholder="Введите id из вк" required/><br>
+        <input type="text" name="name"      placeholder="Введите имя"        required/><br>
+        <input type="text" name="category"  placeholder="Выберете категорию" required/><br>
+        <input type="text" name="price"     placeholder="Введите цену"       required/><br>
+        <input type="text" name="owner"     placeholder="Введите кошелек"    required/><br>
 
         <input class="button" type="submit" value="Зарегистрироваться">
         <p>{{error}}</p>
     </form>
 </body>
 </html>
-
-
-    using SafeMath for uint256;
-    string public name;
-    string public category;
-    uint256 public price;
-    address public owner;

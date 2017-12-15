@@ -5,4 +5,5 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.main),
+    url(r'^createProduct/$', views.createProduct), 
 ]

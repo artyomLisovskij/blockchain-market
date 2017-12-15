@@ -67,8 +67,9 @@ contract Product {
         amountHolded = 0;
         nalog = 0;
     }
-    function() payable
-    public{
+    function pay()
+    payable
+    public returns (uint) {
         require (msg.value >= price);
         uint256 moneyToReturn = msg.value - price; 
         numBuys = numBuys + 1;
@@ -77,6 +78,7 @@ contract Product {
         amountHolded += price;
         if(moneyToReturn > 0)
             msg.sender.transfer(moneyToReturn);
+        return numBuys;
     }
     function approveReceived(uint _order)
     public{
@@ -109,5 +111,10 @@ contract Product {
     public{
         owner.transfer(amount);
         amount = 0;
+    }
+    function changePrice(uint256 _new_price)
+    onlyOwner
+    public{
+        price = _new_price;
     }
 }
