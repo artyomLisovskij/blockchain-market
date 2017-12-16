@@ -5,20 +5,19 @@
   <meta charset="utf-8" />
   <title>BlockChain</title>
   
+  <script type="text/javascript" src="{% static 'js/web3.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+  <script type="text/javascript" src="https://unpkg.com/sweetalert2@7.1.0/dist/sweetalert2.all.js"></script>
   <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
   
 </head>
 <body>
- <form action="/../createProduct/" method="POST" class="post-form">
-        {% csrf_token %}
+ 
         <input type="text" name="name"      placeholder="Введите имя"        required/><br>
         <input type="text" name="category"  placeholder="Выберете категорию" required/><br>
         <input type="text" name="price"     placeholder="Введите цену"       required/><br>
-        <input type="text" name="owner"     placeholder="Введите кошелек"    required/><br>
 
-        <input class="button" type="submit" value="Зарегистрироваться">
-        <p>{{error}}</p>
-    </form>
+        <div class="button">Go</div>
+
 </body>
 </html>

@@ -1,0 +1,48 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>BlockChain</title>
+  
+  <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/market.js' %}"></script>
+</head>
+<body>
+    <h1>Список Товаров</h1>
+    
+    <table class="table table-inverse">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Owner</th>
+                <th>price</th>
+                <th>last_price_date</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+                <th scope="row">{{product.id}}</th>
+                <th id='name_{{product.id}}'>{{product.name}}</th>
+                <th id='category_{{product.id}}'>{{product.category.name}}</th>
+                <th id='owner_{{product.id}}'>{{product.owner}}</th>
+                <th id='price_{{product.id}}'>{{product.price}}</th>
+                <th id='last_price_date_{{product.id}}'>{{product.last_price_date}}</th>
+                </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <aside>
+       <p>Категории</p>
+       <select id='categorySelect'>
+           {% for category in categories %}
+                <option>{{category.name}}</option>
+            {% endfor %}
+        </select>
+    </aside>
+
+</body>
+</html>
