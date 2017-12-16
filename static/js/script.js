@@ -168,7 +168,7 @@ $(document).ready(function(){
 			{
 				from: web3.eth.defaultAccount,
 				data: code,
-				arguments: [$('input[name="name"]').val(), $('input[name="category"]').val(), $('input[name="price"]').val()]
+				arguments: [$('input[name="name"]').val(), $('input[name="category"]').val(), $('input[name="price"]').val(), $('input[name="image"]').val()]
 			}, 
 			function (err, contract) {
             if(err) {
@@ -228,8 +228,8 @@ $(document).ready(function(){
 	});
 	/* Функция покупки и записи инфы о покупке к нам в бд */
 	$('.buy').click(function(){
-		var address = $('#address').val();
-		var price = $('#price').val();
+		var address = $(this).closest('.address').val();
+		var price = $(this).closest('.price').val();
 		var contract = window.web3.eth.contract(abi).at(address);
 		web3.eth.defaultAccount = web3.eth.coinbase;
 		var options = { from: web3.eth.defaultAccount, gas: '3000000', value: price};

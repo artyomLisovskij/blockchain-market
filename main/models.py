@@ -15,7 +15,8 @@ class Categories(models.Model):
 
 class Products(models.Model):
     address = models.CharField(max_length=42)
-    name = models.CharField(max_length=42)
+    name = models.CharField(max_length=255)
+    image = models.CharField(max_length=255)
     category = models.ForeignKey(Categories, on_delete=models.CASCADE)
     owner = models.ForeignKey(EthUsers, on_delete=models.CASCADE)
     price = models.IntegerField()

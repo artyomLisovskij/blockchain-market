@@ -1,16 +1,9 @@
-{% load staticfiles %}
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8" />
-  <title>BlockChain</title>
-  
-  <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
-  <script type="text/javascript" src="{% static 'js/market.js' %}"></script>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block content %}
+
+
     <h1>Список Товаров</h1>
-    
+<div class="container">
     <table class="table table-inverse">
         <thead>
             <tr>
@@ -23,16 +16,18 @@
             </tr>
         </thead>
         <tbody>
+           
         {% for product in products %}
             <tr>
                 <th scope="row">{{product.id}}</th>
-                <th id='name_{{product.id}}'>{{product.name}}</th>
-                <th id='category_{{product.id}}'>{{product.category.name}}</th>
-                <th id='owner_{{product.id}}'>{{product.owner}}</th>
-                <th id='price_{{product.id}}'>{{product.price}}</th>
-                <th id='last_price_date_{{product.id}}'>{{product.last_price_date}}</th>
+                <th>{{product.name}}</th>
+                <th>{{product.category.name}}</th>
+                <th>{{product.owner}}</th>
+                <th>{{product.price}}</th>
+                <th>{{product.last_price_date}}</th>
             </tr>
         {% endfor %}
+      
             <tr>
                 <th scope="row">1</th>
                 <th >Арбуз</th>
@@ -43,14 +38,18 @@
             </tr>
         </tbody>
     </table>
+    
     <aside>
-       <p>Категории</p>
-       <select id='categorySelect'>
+        <p>Фильтер</p>
+        <hr>
+        <p>Категория</p>
+        <select id='categorySelect'>
            {% for category in categories %}
                 <option>{{category.name}}</option>
             {% endfor %}
         </select>
+        <p> Цена</p>
+        
     </aside>
 
-</body>
-</html>
+{% endblock %}

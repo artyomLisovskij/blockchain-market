@@ -33,6 +33,7 @@ contract Product {
     using SafeMath for uint256;
     string public name;
     string public category;
+    string public image;
     uint256 public price;
     address public owner;
     
@@ -55,11 +56,12 @@ contract Product {
         _;
     }
     
-    function Product(string _name, string _category, uint256 _price) 
+    function Product(string _name, string _category, uint256 _price, string _image) 
     public 
     {
         owner = msg.sender;
         name = _name;
+        image = _image;
         category = _category;
         price = _price;
         amount = 0;

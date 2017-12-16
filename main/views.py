@@ -4,9 +4,12 @@ from main.models import *
 import datetime
 import json
 from django.views.decorators.csrf import csrf_exempt
+from django.shortcuts import get_object_or_404
+
 
 def main(request):
     categories = Categories.objects.all()
+    products = Products.objects.all().order_by('?')[:10]
     context = {
         'categories' : categories
     }
@@ -16,6 +19,7 @@ def main(request):
 def createProduct(request):
     if request.POST:
         name = request.POST['name']
+        image = request.POST['image']
         category = request.POST['category']
         price = int(request.POST['price'])
         address = request.POST['address']
@@ -24,6 +28,7 @@ def createProduct(request):
         category, is_created = Categories.objects.get_or_create(name=category)
         product = Products(
             name=name,
+            image=image,
             category=category,
             owner = user,
             price = price,
@@ -37,17 +42,25 @@ def market(request):
     if request.GET:
         categorySelect = request.GET['categorySelect']
         products =  Products.objects.filter(category = categorySelect.id)
+        Max = Products.objects.all().aggregate(Max('price'))
+        Min = Products.objects.all().aggregate(Min('price'))
     else:    
         products = Products.objects.all()
     
+        Max = Products.objects.all().aggregate(Max('price'))
+        Min = Products.objects.all().aggregate(Min('price'))
+        Products.objects.all().aggregate(Max('price'))
+        
     categories = Categories.objects.all()
     context = {
         'products' : products,
-        'categories' : categories
+        'categories' : categories,
+        'Min' : Min,
+        'Max' : Max,
     }
     return render(request, 'market.html', context) 
     
-def categoryPage(category_id, request):
+def categoryPage(request, category_id):
     category = get_object_or_404(Categories, pk=category_id)
     objects = Products.objects.filter(category=category)
     context = {
