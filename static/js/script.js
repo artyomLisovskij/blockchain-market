@@ -580,7 +580,8 @@ $(document).ready(function(){
 		contract.getnalog.call(
                 function (error, result){
                     if(!error){
-                        console.log(result);
+                        console.log(result.c[0]);
+                        return result.c[0];
                     } else {
                         console.log(error);
                     }
@@ -589,9 +590,5 @@ $(document).ready(function(){
 	
 	var adr = "0x3cd584ebe07b64a41d87b10ae3ff18788bdfef34";
 	
-	getPrice(adr);
-	getNumBuys(adr);
-	getAmount(adr);
-	getamountHolded(adr);
-	getNalog(adr);
+	
 });

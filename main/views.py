@@ -81,10 +81,13 @@ def buy(request):
 def boughtHistory(request, user_address):
     user = get_object_or_404(EthUsers, address=user_address)
     bought = UserBought.objects.filter(user=user)
-    context = {
-        'user':user,
-        'products':bought[0].products.all()
-    }
+    if bought:
+        context = {
+            'user':user,
+            'products':bought[0].products.all()
+        }
+    else:
+        context = {}
     return render(request, 'bought_history.html', context)
     
 def merchantHistory(request, user_address):
