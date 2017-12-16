@@ -9,9 +9,10 @@ from django.shortcuts import get_object_or_404
 
 def main(request):
     categories = Categories.objects.all()
-    products = Products.objects.all().order_by('?')[:10]
+    products = Products.objects.all()
     context = {
-        'categories' : categories
+        'categories' : categories,
+        'products' : products
     }
     return render(request, 'index.html', context) 
 
@@ -37,28 +38,6 @@ def createProduct(request):
         return HttpResponse('Продукт создан')
     else:
         return HttpResponseNotFound('<h1>No Page Here</h1>') 
-    
-def market(request):
-    if request.GET:
-        categorySelect = request.GET['categorySelect']
-        products =  Products.objects.filter(category = categorySelect.id)
-        Max = Products.objects.all().aggregate(Max('price'))
-        Min = Products.objects.all().aggregate(Min('price'))
-    else:    
-        products = Products.objects.all()
-    
-        Max = Products.objects.all().aggregate(Max('price'))
-        Min = Products.objects.all().aggregate(Min('price'))
-        Products.objects.all().aggregate(Max('price'))
-        
-    categories = Categories.objects.all()
-    context = {
-        'products' : products,
-        'categories' : categories,
-        'Min' : Min,
-        'Max' : Max,
-    }
-    return render(request, 'market.html', context) 
     
 def categoryPage(request, category_id):
     category = get_object_or_404(Categories, pk=category_id)
@@ -97,8 +76,8 @@ def buy(request):
     else:
         return HttpResponseNotFound('<h1>No Page Here</h1>') 
      
-def boughtHistory(user_address, request):
-    user = get_object_or_404(EthUsers, address=address)
+def boughtHistory(request, user_address):
+    user = get_object_or_404(EthUsers, address=user_address)
     bought = UserBought.objects.filter(user=user)
     context = {
         'user':user,
@@ -106,8 +85,8 @@ def boughtHistory(user_address, request):
     }
     return render(request, 'bought_history.html', context)
     
-def merchantHistory(user_address, request):
-    user = get_object_or_404(EthUsers, address=address)
+def merchantHistory(request, user_address):
+    user, created = EthUsers.objects.get_or_create(address=user_address)
     products = Products.objects.filter(owner=user)
     context = {
         'user':user,

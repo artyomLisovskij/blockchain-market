@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block bought_history %}
+    {% if products %}
+    <table class="table table-inverse">
+        
+        <tr>
+            <td>#</td>
+            <td>Название продукта</td>
+            <td>Категория</td>
+            <td>Продавец</td>
+            <td>Цена</td>
+            <td>Дата покупки</td>
+        </tr>
+        {% for product in products %}
+            <tr>
+                <td scope="row">{{product.id}}</td>
+                <td>{{product.name}}</td>
+                <td>{{product.category.name}}</td>
+                <td>{{product.owner}}</td>
+                <td>getPrice(product.address)</td>
+                <td>{{product.last_price_date}}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p style="text-align:center">У вас еще нет товаров :(</p>
+    {% endif %}
+    
+{% endblock %}

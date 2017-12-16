@@ -119,4 +119,8 @@ contract Product {
     public{
         price = _new_price;
     }
+    
+    function getPrice() constant returns (uint256){
+        return price;
+    }
 }

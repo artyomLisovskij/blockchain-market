@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="table">
+    <div class="wrapper">
+        <h1>Ваши товары:</h1>
+        {% if products %}
+        <table>
+            <tr>
+                <td>#</td>
+                <td>Название продукта</td>
+                <td>Категория</td>
+                <td>Адрес</td>
+                <td>Цена</td>
+                <td>Дата последнего получения цены</td>
+            </tr>
+            
+            {% for product in products %}
+            <tr>
+                <td scope="row">{{product.id}}</td>
+                <td>{{product.name}}</td>
+                <td>{{product.category.name}}</td>
+                <td>{{product.address}}</td>
+                <td>{{product.price}}</td>
+                <td>{{product.last_price_date}}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+            <p style="text-align:center">У вас еще нет товаров :(</p>
+        {% endif %}
+        <hr>
+        <h2>Добавить новый продукт</h2>
+        <div class="flex">
+            <div class="inputs">
+                <div class="title">Наименование:</div>
+                <input type="text" name="name" value="Холодильник indesit" required/>
+                <div class="title">Категория:</div>
+                <input type="text" name="category" value="Холодильник" required/>
+                <div class="title">Цена в WEI:</div>
+                <input type="text" name="price" value="12000" required/>
+                <div class="title">Ссылка на изображение:</div>
+                <input type="text" name="image" value="https://static.eldorado.ru/photos/71/713/459/65/new_71345965_l_1499474224.jpeg/resize/500x375/" required/>
+                <a href="#" class="btn new_product">Добавить новый продукт</a>
+            </div>
+            <div class="preview">
+                <div class="product">
+                  <img class="product__image" src="" alt="" />
+                  <a href="#" class="product__title"></a>
+                  <div class="product__price"></div>
+                  <a href="#" class="product__button">Купить сейчас</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+
+{% endblock %}

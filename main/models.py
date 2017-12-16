@@ -14,7 +14,7 @@ class Categories(models.Model):
         return '%s' % self.name
 
 class Products(models.Model):
-    address = models.CharField(max_length=42)
+    address = models.CharField(max_length=255)
     name = models.CharField(max_length=255)
     image = models.CharField(max_length=255)
     category = models.ForeignKey(Categories, on_delete=models.CASCADE)
