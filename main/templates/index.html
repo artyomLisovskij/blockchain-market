@@ -4,7 +4,8 @@
 <head>
   <meta charset="utf-8" />
   <title>BlockChain</title>
-  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" />
   <script type="text/javascript" src="{% static 'js/web3.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
   <script type="text/javascript" src="https://unpkg.com/sweetalert2@7.1.0/dist/sweetalert2.all.js"></script>
@@ -12,7 +13,29 @@
   
 </head>
 <body>
- 
+  <div class="header">
+    <div class="wrapper">
+      <a href="/" class="logo">ethMarket</a>
+      <div class="input">
+        <input type="text" id="search">
+        <i class="fa fa-search search" aria-hidden="true"></i>
+      </div>
+      <div class="rightblock">
+        <a href="/merchant" class="merchant"><i class="fa fa-briefcase" aria-hidden="true"></i></a>
+        <a href="/customer" class="customer"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </div>
+  <div class="main">
+    <div class="wrapper">
+      <div class="categories">
+        {% for category in categories %}
+        <a href=""></a>
+        {% endfor %}
+      </div>
+    </div>
+      
+  </div>
         <input type="text" name="name"      placeholder="Введите имя"        required/><br>
         <input type="text" name="category"  placeholder="Выберете категорию" required/><br>
         <input type="text" name="price"     placeholder="Введите цену"       required/><br>

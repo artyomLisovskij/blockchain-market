@@ -16,8 +16,8 @@ class Categories(models.Model):
 class Products(models.Model):
     address = models.CharField(max_length=42)
     name = models.CharField(max_length=42)
-    category = models.ForeignKey(Categories)
-    owner = models.ForeignKey(EthUsers)
+    category = models.ForeignKey(Categories, on_delete=models.CASCADE)
+    owner = models.ForeignKey(EthUsers, on_delete=models.CASCADE)
     price = models.IntegerField()
     last_price_date = models.DateField()
     
@@ -25,7 +25,7 @@ class Products(models.Model):
         return '%s by %s' % (self.name, self.price)
         
 class UserBought(models.Model):
-    user = models.ForeignKey(EthUsers)
+    user = models.ForeignKey(EthUsers, on_delete=models.CASCADE)
     products = models.ManyToManyField(Products)
     
     def __str__(self):

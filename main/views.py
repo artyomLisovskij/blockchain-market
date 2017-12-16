@@ -6,7 +6,11 @@ import json
 from django.views.decorators.csrf import csrf_exempt
 
 def main(request):
-    return render(request, 'index.html') 
+    categories = Categories.objects.all()
+    context = {
+        'categories' : categories
+    }
+    return render(request, 'index.html', context) 
 
 @csrf_exempt
 def createProduct(request):
@@ -32,7 +36,7 @@ def createProduct(request):
 def market(request):
     if request.GET:
         categorySelect = request.GET['categorySelect']
-        products =  Products.f.all()
+        products =  Products.objects.filter(category = categorySelect.id)
     else:    
         products = Products.objects.all()
     
