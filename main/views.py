@@ -33,6 +33,7 @@ def createProduct(request):
             category=category,
             owner = user,
             price = price,
+            address = contract,
             last_price_date = datetime.datetime.now())
         product.save()
         return HttpResponse('Продукт создан')
@@ -48,7 +49,7 @@ def categoryPage(request, category_id):
     }
     return render(request, 'category.html', context) 
     
-def itemPage(item_id, request):
+def itemPage(request, item_id):
     item = get_object_or_404(Products, pk=item_id)
     category = get_object_or_404(Categories, pk=item.category.id)
     context = {
@@ -63,13 +64,14 @@ def buy(request):
         address = request.POST['address']
         product_address = request.POST['product_address']
         user, created = EthUsers.objects.get_or_create(address=address)
-        product, is_created = Products.objects.get(address=product_address)
+        product = Products.objects.get(address=product_address)
         user_bought = UserBought.objects.filter(user=user)
         if user_bought:
             user_bought.products.add(product)
             user_bought.save()
         else:
             user_bought = UserBought(user=user)
+            user_bought.save()
             user_bought.products.add(product)
             user_bought.save()
         return HttpResponse('Покупка совершена успешно!')
@@ -81,7 +83,7 @@ def boughtHistory(request, user_address):
     bought = UserBought.objects.filter(user=user)
     context = {
         'user':user,
-        'history_items':bought
+        'products':bought[0].products.all()
     }
     return render(request, 'bought_history.html', context)
     

@@ -3,6 +3,8 @@
 <div class="table">
     <div class="wrapper">
         <h1>Ваши товары:</h1>
+        <div  class="payNalog">Оплатить налоги</div>
+        
         {% if products %}
         <table>
             <tr>
@@ -12,6 +14,10 @@
                 <td>Адрес</td>
                 <td>Цена</td>
                 <td>Дата последнего получения цены</td>
+                <td>Колличество покупок</td>
+                <td>заработанно денег</td>
+                <td>В ожидании оплаты</td>
+                <td>Необлаченно налогов</td>
             </tr>
             
             {% for product in products %}
@@ -22,6 +28,15 @@
                 <td>{{product.address}}</td>
                 <td>{{product.price}}</td>
                 <td>{{product.last_price_date}}</td>
+                <td >
+                    <script>
+                        var a = '{{product.address}}';
+                        console.log(a);
+                    </script>
+                </td>
+                <td>заработанно денег</td>
+                <td>В ожидании оплаты</td>
+                <td>Необлаченно налогов</td>
             </tr>
             {% endfor %}
             </tbody>

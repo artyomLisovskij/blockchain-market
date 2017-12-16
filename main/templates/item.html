@@ -1,0 +1,25 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>BlockChain</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" />
+  <script type="text/javascript" src="{% static 'js/web3.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+  <script type="text/javascript" src="https://unpkg.com/sweetalert2@7.1.0/dist/sweetalert2.all.js"></script>
+  <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+</head>
+<body>
+        <div class="product">
+          <img class="product__image" src="{{item.image}}" alt="{{item.name}} за {{ item.price }} WEI" />
+          <a href="/item/{{item.id}}" class="product__title">{{ item.name }}</a>
+          <div class="product__price">{{ item.price }} WEI</div>
+          <a href="#" class="product__button buy">Купить сейчас</a>
+          <input type="hidden" class="price" value="{{item.price}}"/>
+          <input type="hidden" class="address" value="{{item.address}}"/>
+        </div>
+    <p>Вставлено с сайта <a href="https://ama-artyomlisovskij.c9users.io/">ethMarket</a></p>
+</body>
+</html>

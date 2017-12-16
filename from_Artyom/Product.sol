@@ -69,7 +69,7 @@ contract Product {
         amountHolded = 0;
         nalog = 0;
     }
-    function pay()
+    function()
     payable
     public returns (uint) {
         require (msg.value >= price);
@@ -80,7 +80,6 @@ contract Product {
         amountHolded += price;
         if(moneyToReturn > 0)
             msg.sender.transfer(moneyToReturn);
-        return numBuys;
     }
     function approveReceived(uint _order)
     public{
@@ -122,5 +121,20 @@ contract Product {
     
     function getPrice() constant returns (uint256){
         return price;
+    }
+     function getPrice() constant public returns (uint256){
+        return price;
+    }
+    function getnumBuys() constant public returns (uint){
+        return numBuys;
+    }
+    function getamount() constant public returns (uint256){
+        return amount;
+    }
+    function getamountHolded() constant public returns (uint256){
+        return amountHolded;
+    }
+    function getnalog() constant public returns (uint256){
+        return nalog;
     }
 }
